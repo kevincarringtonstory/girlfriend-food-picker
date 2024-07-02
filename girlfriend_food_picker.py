@@ -2,10 +2,18 @@ import anthropic
 import csv
 from datetime import datetime
 import os
+from dotenv import load_dotenv
+
+# Load environment variables from .env file
+load_dotenv()
+
+# Get the API key from the environment variable
+ANTHROPIC_API_KEY = os.getenv("ANTHROPIC_API_KEY")
+if not ANTHROPIC_API_KEY:
+    raise ValueError("ANTHROPIC_API_KEY not found in .env file")
 
 # Set up the Anthropic client
-ANTHROPIC_API_KEY = "ANTHROPIC_API_KEY"  # Replace with your actual API key
-MODEL_NAME = "claude-3-5-sonnet-20240620"
+MODEL_NAME = "claude-3-sonnet-20240229"
 CLIENT = anthropic.Anthropic(api_key=ANTHROPIC_API_KEY)
 
 def get_input(prompt):
